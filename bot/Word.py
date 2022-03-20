@@ -1,22 +1,26 @@
 from Tip import Tip 
 
-class Word: 
-    # def countChars(self, word) -> Dict: 
-    #     res = {} 
-    #     for i in word: 
-    #         res[i] = res[i] + 1 if i in res else 1 
-    #     return res 
+"""A representation of a singular word. 
 
+    Attributes:
+        word: The current word being operated on. 
+""" 
+
+class Word: 
     def __init__(self): 
-        self.word = ""  
+        self.word = "ADIEU" 
+        # TO-DO: Implement an algorithm to automatically create the word 
     
-    def getWord(self): 
-        return self.word 
-    
-    def setWord(self, word): 
-        self.word = word.upper()  
-    
-    def calcAccuracy(self, guess): 
+    def calc_accuracy(self, guess): 
+        """Calculates if a guess was correct. 
+
+        Determines a detailed list of if each letter was in the correct spot, 
+        in the wrong spot, or does not exist in the word at all. 
+
+        Attributes:
+            guess: The user's current word choice being examined. 
+        """ 
+        
         guess = guess.upper() 
         res = [] 
         for i, j in zip(guess, self.word): 
@@ -26,6 +30,5 @@ class Word:
                 res.append(Tip.PRESENT) 
             else: 
                 res.append(Tip.ABSENT) 
-
 
         return (True, res) if Tip.PRESENT not in res and Tip.ABSENT not in res else (False, res) 
